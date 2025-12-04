@@ -125,7 +125,7 @@
       margin-top: 20px;
     }
 
-    /* Page 1 右側示意圖（四色＋白圓＋紅色「黃」） */
+    /* Page 1 右側示意圖 */
 
     .preview-box {
       width: 260px;
@@ -213,7 +213,7 @@
       box-shadow: 0 0 0 2px rgba(59,130,246,0.25);
     }
 
-    /* ==== Page 3: 練習說明頁 ==== */
+    /* ==== Page 3: 練習說明 ==== */
 
     #practice-intro-card {
       width: 100%;
@@ -231,7 +231,7 @@
       line-height: 1.6;
     }
 
-    /* ==== Page 4: 測驗畫面（練習＋正式） ==== */
+    /* ==== Page 4: 測驗畫面 ==== */
 
     #test-page {
       padding: 0;
@@ -299,7 +299,7 @@
       z-index: 20;
     }
 
-    /* ==== 練習答案顯示：跟題目一樣，只是三格變白 ==== */
+    /* 練習答案提示 */
 
     #practice-feedback {
       position: fixed;
@@ -323,7 +323,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
-    /* ==== 練習結束頁 ==== */
+    /* 練習結束頁 */
 
     #practice-start-inner {
       width: 100%;
@@ -336,7 +336,7 @@
       line-height: 1.6;
     }
 
-    /* ==== 結果頁 ==== */
+    /* 結果摘要頁 */
 
     #page-4-card {
       width: 100%;
@@ -371,12 +371,37 @@
       text-align: center;
     }
 
+    #results-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    /* 詳細頁 */
+
+    #detail-card {
+      width: 100%;
+      max-width: 880px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 16px 36px rgba(15,23,42,0.12);
+      padding: 26px 26px 20px;
+    }
+
+    #detail-card h2 {
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 1.5rem;
+      color: #111827;
+    }
+
     .results-table-wrapper {
       border-radius: 14px;
       border: 1px solid #e5e7eb;
       background: #f9fafb;
       padding: 6px;
-      max-height: 420px;
+      max-height: 460px;
       overflow: auto;
     }
 
@@ -402,21 +427,58 @@
       z-index: 1;
     }
 
-    /* 結果頁按鈕區塊 */
-    #results-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 8px;
+    /* 題目 / 正確答案：小卡片 */
+
+    .mini-stimulus {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 6px;
+      border: 2px solid #e5e7eb;
+      background: #ffffff;
+      overflow: hidden;
+      display: inline-block;
     }
 
-    /* 詳細紀錄區塊預設隱藏 */
-    #detail-section {
-      margin-top: 16px;
-      display: none;
+    .mini-block {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 65%;
+      height: 65%;
+      background: var(--color, #00B0F0);
+      overflow: hidden;
     }
 
-    /* ==== 倒數畫面 ==== */
+    .mini-circle {
+      position: absolute;
+      right: -120%;
+      top: -120%;
+      width: 240%;
+      height: 240%;
+      border-radius: 50%;
+      background: #ffffff;
+    }
+
+    .mini-symbol {
+      position: absolute;
+      left: 58%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--color, #00B0F0);
+      user-select: none;
+    }
+
+    /* 您的選擇：顏色字 */
+
+    .choice-symbol {
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    /* 倒數畫面 */
 
     #countdown-screen {
       position: fixed;
@@ -442,7 +504,8 @@
       #page-1-card,
       #page-2-card,
       #practice-intro-card,
-      #page-4-card {
+      #page-4-card,
+      #detail-card {
         padding: 24px 18px 18px;
       }
       #stroop-word {
@@ -529,7 +592,7 @@
     </div>
   </section>
 
-  <!-- Page 4: 測驗畫面（練習 + 正式） -->
+  <!-- Page 4: 測驗畫面 -->
   <section id="test-page" class="page">
     <div id="test-layout">
       <div id="mode-label"></div>
@@ -545,7 +608,7 @@
     </div>
   </section>
 
-  <!-- 練習答案顯示：只顯示提示文字，顏色直接用題目畫面呈現 -->
+  <!-- 練習答案提示 -->
   <div id="practice-feedback">
     <div id="practice-feedback-text">這是正確的顏色，請點一下繼續下一題練習。</div>
   </div>
@@ -558,12 +621,12 @@
     </div>
   </section>
 
-  <!-- 倒數畫面（只在正式開始前出現一次） -->
+  <!-- 倒數畫面 -->
   <div id="countdown-screen">
     <div id="countdown-number">3</div>
   </div>
 
-  <!-- 結果頁 -->
+  <!-- 結果摘要頁 -->
   <section id="page-4" class="page">
     <div id="page-4-card">
       <div class="result-header-title">測驗完成</div>
@@ -574,24 +637,30 @@
         <button class="btn" id="btn-restart">再玩一次</button>
         <button class="btn" id="btn-show-detail">詳細答題記錄</button>
       </div>
+    </div>
+  </section>
 
-      <div id="detail-section">
-        <div class="results-table-wrapper">
-          <table id="results-table">
-            <thead>
-              <tr>
-                <th>題號</th>
-                <th>題目(字/色)</th>
-                <th>正確答案</th>
-                <th>您的選擇</th>
-                <th>反應時間(ms)</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+  <!-- 詳細答題記錄頁 -->
+  <section id="detail-page" class="page">
+    <div id="detail-card">
+      <h2>詳細答題記錄</h2>
+      <div class="results-table-wrapper">
+        <table id="results-table">
+          <thead>
+            <tr>
+              <th>題號</th>
+              <th>題目</th>
+              <th>正確答案</th>
+              <th>您的選擇</th>
+              <th>反應時間(ms)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-
+      <div style="display:flex;justify-content:center;margin-top:18px;">
+        <button class="btn" id="btn-detail-back">上一頁</button>
+      </div>
     </div>
   </section>
 
@@ -620,11 +689,16 @@
       const testPage = document.getElementById("test-page");
       const practiceStartPage = document.getElementById("practice-start-page");
       const page4 = document.getElementById("page-4");
+      const detailPage = document.getElementById("detail-page");
 
       const goToInfoBtn = document.getElementById("go-to-info");
       const goToPracticeIntroBtn = document.getElementById("go-to-practice-intro");
       const startPracticeBtn = document.getElementById("start-practice");
       const practiceStartBtn = document.getElementById("btn-start-formal");
+
+      const restartBtn = document.getElementById("btn-restart");
+      const showDetailBtn = document.getElementById("btn-show-detail");
+      const detailBackBtn = document.getElementById("btn-detail-back");
 
       const nameInput = document.getElementById("name");
       const birthdayInput = document.getElementById("birthday");
@@ -640,12 +714,6 @@
 
       const resultsSummary = document.getElementById("results-summary");
       const resultsTableBody = document.querySelector("#results-table tbody");
-      const detailSection = document.getElementById("detail-section");
-      const restartBtn = document.getElementById("btn-restart");
-      const showDetailBtn = document.getElementById("btn-show-detail");
-
-      let participantName = "";
-      let participantBirthday = "";
 
       let currentMode = MODE_NONE;
 
@@ -657,13 +725,14 @@
       let currentWordChar = null;
 
       let previousCorrectButtonIndex = null;
+      let previousTestWordChar = null;  // 上一題的字（正式測驗用）
 
       let testRecords = [];
       let testStartTime = null;
       let trialStartTime = null;
 
       function showPage(p) {
-        [page1,page2,practiceIntroPage,testPage,practiceStartPage,page4].forEach(x=>{
+        [page1,page2,practiceIntroPage,testPage,practiceStartPage,page4,detailPage].forEach(x=>{
           if(x) x.classList.remove("active");
         });
         p.classList.add("active");
@@ -752,7 +821,6 @@
       }
 
       function showPracticeFeedback(){
-        // 顯示正確顏色：正確那一格保留原色，其餘三格變白
         colorButtons.forEach(btn=>{
           const key = btn.dataset.colorKey;
           if(!key) return;
@@ -782,12 +850,21 @@
       /* ==== 正式測驗流程 ==== */
 
       function generateStroopStimulus(){
+        // 隨機挑顏色 (ink)
         const inkColor = pickRandom(COLOR_CONFIG);
         currentInkColorKey = inkColor.key;
 
-        const possibleWords = COLOR_CONFIG.filter(c=>c.key!==inkColor.key);
-        const wordColor = pickRandom(possibleWords);
+        // 字面顏色：不能與 ink 相同，且不能與上一題的字相同
+        let wordColor;
+        const candidates = COLOR_CONFIG.filter(c=>c.key!==inkColor.key);
+        let attempts = 0;
+        do {
+          wordColor = pickRandom(candidates);
+          attempts++;
+        } while(previousTestWordChar && wordColor.char === previousTestWordChar && attempts < 20);
+
         currentWordChar = wordColor.char;
+        previousTestWordChar = currentWordChar;
 
         stroopWordEl.textContent = currentWordChar;
         stroopWordEl.style.color = inkColor.hex;
@@ -830,8 +907,11 @@
           trialNumber: testRecords.length+1,
           wordChar: currentWordChar,
           inkColorLabel: inkCfg.label,
+          inkColorKey: currentInkColorKey,
           correctAnswer: inkCfg.label,
+          correctKey: currentInkColorKey,
           chosenAnswer: chosenCfg.label,
+          chosenKey: chosenKey,
           reactionTimeMs: Math.round(rt)
         });
 
@@ -839,7 +919,6 @@
         if(elapsed >= TEST_DURATION_MS){
           finishTest();
         } else {
-          // 直接出下一題，不要 3 秒間隔
           generateStroopStimulus();
           trialStartTime = performance.now();
         }
@@ -852,12 +931,11 @@
         showPage(page4);
 
         const total = testRecords.length;
-        const totalCorrect = testRecords.filter(r=>r.chosenAnswer === r.correctAnswer).length;
+        const totalCorrect = testRecords.filter(r=>r.chosenKey === r.correctKey).length;
         const accuracy = total>0 ? Math.round(totalCorrect/total*100) : 0;
         const totalRT = testRecords.reduce((s,r)=>s+r.reactionTimeMs,0);
         const avgRT = total>0 ? Math.round(totalRT/total) : 0;
 
-        // 只顯示題數、正確題數、正確率、平均 RT
         resultsSummary.innerHTML = `
           <div class="result-summary-line">總作答題數：<strong>${total}</strong></div>
           <div class="result-summary-line">答對題數：<strong>${totalCorrect}</strong></div>
@@ -865,31 +943,53 @@
           <div class="result-summary-line">平均反應時間：<strong>${total>0 ? avgRT+" 毫秒" : "—"}</strong></div>
         `;
 
-        // 建立詳細紀錄表格內容
+        // 詳細紀錄表格
         resultsTableBody.innerHTML = "";
         testRecords.forEach(r=>{
+          const inkHex = COLOR_BY_KEY[r.inkColorKey].hex;
+
+          const stimulusHtml = `
+            <div class="mini-stimulus" style="--color:${inkHex}">
+              <div class="mini-block"></div>
+              <div class="mini-circle"></div>
+              <div class="mini-symbol">${r.wordChar}</div>
+            </div>
+          `;
+
+          const correctHtml = `
+            <div class="mini-stimulus" style="--color:${inkHex}">
+              <div class="mini-block"></div>
+              <div class="mini-circle"></div>
+              <div class="mini-symbol">X</div>
+            </div>
+          `;
+
+          const choiceCfg = COLOR_BY_KEY[r.chosenKey];
+          const choiceHtml = `
+            <span class="choice-symbol" style="color:${choiceCfg.hex};">
+              ${choiceCfg.char}
+            </span>
+          `;
+
           const tr = document.createElement("tr");
-          const q = `${r.wordChar}字 / ${r.inkColorLabel}`;
           tr.innerHTML = `
             <td>${r.trialNumber}</td>
-            <td>${q}</td>
-            <td>${r.correctAnswer}</td>
-            <td>${r.chosenAnswer}</td>
+            <td>${stimulusHtml}</td>
+            <td>${correctHtml}</td>
+            <td>${choiceHtml}</td>
             <td>${r.reactionTimeMs}</td>
           `;
           resultsTableBody.appendChild(tr);
         });
-
-        // 進結果頁時，詳細紀錄先關閉
-        detailSection.style.display = "none";
       }
 
       function startFormalTest(){
         currentMode = MODE_TEST;
         testRecords = [];
         previousCorrectButtonIndex = null;
+        previousTestWordChar = null;
         testStartTime = performance.now();
-        startCountdown(startFirstTestTrial);  // 正式開始前倒數一次
+        startCountdown(startFirstTestTrial);
       }
 
       /* ==== 事件綁定 ==== */
@@ -897,8 +997,9 @@
       goToInfoBtn.addEventListener("click", ()=>{ showPage(page2); });
 
       goToPracticeIntroBtn.addEventListener("click", ()=>{
-        participantName = nameInput.value.trim();
-        participantBirthday = birthdayInput.value;
+        const name = nameInput.value.trim();
+        const birth = birthdayInput.value;
+        // 目前只是收集，不特別顯示
         showPage(practiceIntroPage);
       });
 
@@ -920,7 +1021,6 @@
 
       practiceFeedback.addEventListener("click", ()=>{ proceedAfterPracticeFeedback(); });
 
-      // 再玩一次：回到最一開始的介紹頁
       restartBtn.addEventListener("click", ()=>{
         currentMode = MODE_NONE;
         countdownScreen.style.display = "none";
@@ -928,11 +1028,13 @@
         showPage(page1);
       });
 
-      // 詳細答題記錄：顯示表格
       showDetailBtn.addEventListener("click", ()=>{
-        detailSection.style.display = "block";
+        showPage(detailPage);
       });
 
+      detailBackBtn.addEventListener("click", ()=>{
+        showPage(page4);
+      });
     });
   </script>
 </body>
